@@ -1,0 +1,183 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: red;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.gymheader {
+  position: relative;
+  margin-top: -20px;
+}
+
+.gymheader img {
+  height: 100vh;
+  width: 100%;
+}
+
+.gymheader .Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  opacity: 0.2;
+}
+
+.gymheader .hearderContent {
+  position: absolute;
+  top: 45%;
+  left: 40%;
+  margin: auto;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  font-family: "Times New Roman", Times, serif;
+  /* background-color: #000; */
+}
+
+.gymheader .hearderContent h6 {
+  font-size: 60px;
+}
+
+.gymheader .hearderContent h6 span {
+  font-size: 75px;
+  color: var(--main);
+}
+
+.gymheader .hearderContent p {
+  font-size: 30px;
+}
+.gymheader .hearderContent select {
+  color: white;
+  background-color: black;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 160px;
+  height: 35px;
+}
+
+.gymheader .hearderContent button {
+  margin-left: 2px;
+  background-color: var(--main);
+  border-radius: 10%;
+  padding: 5px;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: fit-content;
+  height: 35px;
+  border-color: #1e6091;
+}
+
+.gymheader .hearderContent button:hover {
+  cursor: pointer;
+  background-color: #0b2d47;
+}
+
+/* the container that holds the 6 gyms */
+.container-gyms {
+  background-color: #fff;
+  margin-left: 50px;
+}
+.container-gyms .content h1 {
+  text-align: center;
+}
+
+.container-gyms .content span {
+  color: var(--main);
+}
+.container-gyms .content h1 {
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.container-gyms .content P {
+  font-size: large;
+}
+.container-gyms .column {
+  margin: 10px;
+}
+.container-gyms .row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.container-gyms .box {
+  box-shadow: #0b2d47;
+  height: 400px;
+  width: 500px;
+  border-radius: 1px solid #000;
+  background-color: #000;
+  margin-left: 40px;
+  padding: 20px;
+  border-radius: 10%;
+}
+.container-gyms img {
+  height: 75%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10%;
+}
+.container-gyms .box:hover {
+  cursor: pointer;
+  transform: scale(1.086);
+  background-color: black;
+}
+/* .container-gyms .box:hover img {
+  transform: scale(1.1);
+  filter: brightness(70%);
+  opacity: 0.5;
+} */
+
+
+/* .container-gyms .box:hover .textOverlay {
+  display: block;
+} */
+
+.textOverlay {
+  /* display: none; */
+  /* position: absolute;
+  bottom: 0; */
+  font-size: large;
+  background-color: #000;
+  color: white;
+  font-family: sans-serif;
+  margin-top: 5px;
+}
+
+.createGym {
+  margin-top: 30px;
+  background-color: #000;
+  padding: 50px;
+  font-weight: 700;
+  font-size: 27px;
+  color: #f1f0f0;
+  display: flex;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.createGym .createGym-inner{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+ 
+}
+/* .advice{
+  display: flex;
+  justify-content: flex-start;
+}*/
+.add-your-gym{
+position: relative;
+top: 25%;
+} 
+.add-your-gym button{
+  background-color: var(--main);
+  color: #fff;
+  padding: 7px;
+  border-radius: 20%;
+  font-size: 20px
+}

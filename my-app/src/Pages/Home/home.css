@@ -1,0 +1,153 @@
+.header {
+    position: relative;
+    margin-top: -20px;
+}
+
+.header img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.header .Overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    opacity: 0.6;
+}
+
+.header .hearderContent {
+    position: absolute;
+    top: 20%;
+    left: 9%;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    /* background-color: #000; */
+}
+
+.header .hearderContent h6 {
+    font-size: 60px;
+
+}
+
+.header .hearderContent h6 span {
+    font-size: 75px;
+    color: var(--main);
+}
+
+.header .hearderContent p {
+    font-size: 30px;
+}
+
+.header .hearderContent button {
+    margin-top: 4%;
+    background-color: var(--main);
+    border-radius: 10%;
+    padding: 10px;
+    font-size: 20px;
+    width: 35%;
+    font-family: 'Times New Roman', Times, serif;
+    border-color: #1E6091;
+    color: #fff;
+
+
+}
+
+.header .hearderContent button:hover {
+    cursor: pointer;
+    background-color: #0b2d47;
+}
+
+
+
+
+
+/* about us part starts here*/
+.Aboutus_details img {
+    height: 200%;
+    width: 100%;
+    object-fit: contain;
+    margin: 20px;
+    aspect-ratio: 3/2;
+    
+}
+
+
+.Aboutus_details {
+    margin: 2px auto;
+    /* color: #fff; */
+    color: #000;
+    /* color: var(--main); */
+    background-color: #fff;
+    /* background-color: #000000;  */
+
+}
+
+.Aboutus_details .col-sm-6 h1 {
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family:cursive
+}
+
+.Aboutus_details .col-sm-6 h2 {
+
+    font-size: 50px;
+    font-weight: 900;
+    margin: 20px auto;
+    font-family: 'Times New Roman', Times, serif
+}
+
+.Aboutus_details .col-sm-6 h2 span {
+    color: var(--main);
+    font-weight: 600;
+}
+
+.Aboutus_details .col-sm-6 p {
+    font-size: 31px;
+    font-weight: 200;
+    margin: 20px auto;
+    font-family:cursive
+}
+
+
+
+
+/* boxes */
+.boxes {
+    background-color: #000;
+    padding: 40px;
+    margin-bottom: 10px;
+
+}
+
+.boxes .box {
+    margin-left: 15px;
+    padding: 12px;
+    color: #fff;
+    text-align: center;
+    border: 1px solid ;
+    box-shadow: inset;
+   
+}
+.boxes .box:hover{
+    transform: scale(1.07);
+    cursor: pointer;
+}
+.boxes .box h1 {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--main);
+}
+
+.boxes .box p {
+    font-size: 17px;
+}
+.boxes .mid{
+    margin-top: 40px;
+}

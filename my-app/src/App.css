@@ -1,0 +1,16 @@
+:root {
+  --main: #14476e;
+}
+
+* {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  transition: 0.3s;
+  width: auto;
+  height: auto;
+
+}
+
+*::selection {
+  background-color: var(--main);
+  color: rgb(0, 0, 0);
+}
