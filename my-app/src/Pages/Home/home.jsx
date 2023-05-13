@@ -6,6 +6,8 @@ import React, { useRef } from "react";
 
 import "./home.css";
 
+console.log(HeaderImg, aboutUsimg);
+
 const Home = () => {
   const scrollToRef = useRef(null);
   return (
@@ -24,27 +26,32 @@ const Home = () => {
           </h6>
           <p>With a click of a button</p>
           {/* <NavLink to="/GetGyms"> */}
-            <button
-              onClick={() =>
-                scrollToRef.current.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              About Us
-            </button>
+          <button
+            onClick={() =>
+              scrollToRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            About Us
+          </button>
           {/* </NavLink> */}
         </div>
       </div>
 
       {/* About us */}
-      <div className="Aboutus_details" >
+      <div className="Aboutus_details">
         <div className="row">
           {/* side image for aboutUS */}
-          <div className="col-sm-6" >
-            <img src={aboutUsimg} className="image_fluid" alt="" ref={scrollToRef}/>
+          <div className="col-sm-6">
+            <img
+              src={aboutUsimg}
+              className="image_fluid"
+              alt=""
+              ref={scrollToRef}
+            />
           </div>
 
           {/* about us paragraph */}
-          <div className="col-sm-6" >
+          <div className="col-sm-6">
             <h1>Attitude is Everything</h1>
 
             <h2>
@@ -56,8 +63,8 @@ const Home = () => {
 
             <p>
               A wonderfull fitness website which tracks your location to present
-              the best gyms near you, and gives the specifications
-              of every gym and every PT outthere!!
+              the best gyms near you, and gives the specifications of every gym
+              and every PT outthere!!
             </p>
           </div>
         </div>
@@ -95,4 +102,3 @@ const Home = () => {
 };
 
 export default Home;
-

@@ -3,11 +3,15 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
+
 
 function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalid, setInvalid] = useState(false);
+  const [cookies, setCookies] = useCookies(["access_token"]);
+
 
   const navigate = useNavigate();
 
@@ -15,17 +19,20 @@ function LogInPage() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/signin",
+        "http://localhost:8080/api/user/signin",
         {
           email,
           password,
         }
       );
 
-      if (response.status === 201) {
+      if (response.status === 200) {
+        setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
         navigate("/GetGyms");
       }
+
+     
     } catch (error) {
       console.log(error);
       setInvalid(true);
@@ -78,7 +85,6 @@ function LogInPage() {
                   Invalid credentials, please enter correct email and password
                 </label>
               )}
-              
 
               <div className="form-element">
                 <button>Sign in</button>

@@ -1,23 +1,39 @@
+// Images imported From Images File
 import HeaderImg from "../../Images/girl-ties-hair-resized.jpg";
 import ChampsFitness from "../../Images/ChampsFitnessDevelopmentCenter.jpg";
 import GoldGym from "../../Images/Goldgym.jpg";
-import goodLife from "../../Images/goodLifeFitness.jpg"; //Images for the gyms
+import goodLife from "../../Images/goodLifeFitness.jpg";
 import Magnumgym from "../../Images/Magnumgym.jpg";
 import goldenlili from "../../Images/goldenlili.jpg";
 import VolumizeFitness from "../../Images/VolumizeFitnessClub.jpg";
+import img from "../../Images/girl-ties-hair-resized.jpg";
 
 import { NavBar } from "../../Components"; //import navbar
 import "./GetGymsByRegion.css"; //to link the css
+import { GymCards } from "../../Components";
 
+// import GymCards from '../../Components/gymCards/gymCards';
+import CreateGymPopup from "../GymForm/createGymPopup";
 // material icon
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+// import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
+// import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { NavLink } from "react-router-dom";
-
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const GetGyms = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSearch = () => {
+    console.log("Selected value: " + selectedValue);
+    handleScrollClick();
+  };
+
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
   const scrollToRef = useRef(null);
 
   const handleScrollClick = () => {
@@ -28,6 +44,7 @@ const GetGyms = () => {
       yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
+
   return (
     <>
       <NavBar />
@@ -35,7 +52,7 @@ const GetGyms = () => {
       {/* intro paragraph */}
       <div className="gymheader">
         <div className="img">
-          <img src={HeaderImg} alt="" />
+          <img src={img} alt="" />
         </div>
         <div className="Overlay"></div>
 
@@ -43,7 +60,11 @@ const GetGyms = () => {
           <p>Drop down the region </p>
 
           <div>
-            <select name="cars">
+            <select
+              name="regions"
+              value={selectedValue}
+              onChange={handleSelectChange}
+            >
               <option value="Beirut ">Beirut </option>
               <option value="Mount Lebanon">Mount Lebanon</option>
               <option value="North Lebanon">North Lebanon</option>
@@ -51,7 +72,7 @@ const GetGyms = () => {
               <option value="the Beqaa">the Beqaa</option>
             </select>
 
-            <button onClick={handleScrollClick}>
+            <button onClick={handleSearch}>
               <SearchOutlinedIcon />
             </button>
           </div>
@@ -66,7 +87,7 @@ const GetGyms = () => {
           </h1>
         </div>
 
-        <div className="row">
+        {/* <div className="row">
           <div className="column">
             <div className="box">
               <img src={VolumizeFitness} alt="" className="gym1-box-1" />
@@ -156,7 +177,14 @@ const GetGyms = () => {
               </div>
             </div>
           </div>
+        </div> */}
+        {/* </div>  */}
+
+        <div className="Properties">
+          <GymCards setErrorMessage={setErrorMessage} />
         </div>
+
+        <p>{errorMessage}</p>
       </div>
 
       {/* ending part  */}

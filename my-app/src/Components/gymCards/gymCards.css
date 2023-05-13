@@ -1,0 +1,9 @@
+.GymCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.parentContainer {
+    width: 100%;
+}

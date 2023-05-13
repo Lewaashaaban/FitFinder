@@ -3,20 +3,19 @@ import { NavLink } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import { LogInPage } from "../../Pages";
-import {  useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import CheckOut from "../../Pages/LogOut/CheckOut/checkOut";
 
-// matrial icon 
+// matrial icon
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
-
+import LoginOutlinedIcon from "@mui/icons-material/LoginOutlined";
 
 const NavBar = () => {
   const [scrollPos, setScrollPos] = useState(0);
-  
+
   // const [loginPopup, setLoginPopup] = useState(false);
-//function to change the color of navbar from transparent to black when we scroll down
+  //function to change the color of navbar from transparent to black when we scroll down
   useEffect(() => {
-    
     function handleScroll() {
       setScrollPos(window.scrollY);
     }
@@ -27,8 +26,8 @@ const NavBar = () => {
   }, []);
 
   const navbarStyle = {
-    backgroundColor: scrollPos > 0 ? "black" : "transparent", 
-    transition: "background-color 0.2s ease", 
+    backgroundColor: scrollPos > 0 ? "black" : "transparent",
+    transition: "background-color 0.2s ease",
   };
 
   // function to check the page opened
@@ -56,12 +55,11 @@ const NavBar = () => {
         <nav>
           <div className="navbar-nav">
             <p className="nav-item">
-
-              <NavLink to="/" className="nav-link">
-               <LogoutOutlinedIcon fontSize="large" /> Logout
+              <NavLink to="/CheckOut" className="nav-link">
+                <LogoutOutlinedIcon fontSize="large" /> Logout
               </NavLink>
             </p>
-            </div>
+          </div>
         </nav>
       );
     }

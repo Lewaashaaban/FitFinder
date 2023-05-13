@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.PropertyDetails {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.inner {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #0a1121;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
+  transition: all 0.5s ease-out;
+}
+
+.PropertyCard:hover {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.image {
+  height: 180px;
+}
+
+.inner img {
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.titleprice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mid-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.p-value {
+  padding: 5px;
+  width: fit-content;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 80, 0, 0.7);
+  border-radius: 20px;
+}
+
+.description {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 10px;
+  height: 30%;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { SideBar } from "./Components";
+import { SideBar,LogOut,CheckOut ,MySnackbar} from "./Components";
 import {
   Home,
   LogInPage,
@@ -17,13 +17,16 @@ const App = () => {
     <ProSidebarProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />}>
-            
-          </Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/login" element={<LogInPage />}></Route>
           <Route path="/GetGyms" element={<GetGyms />}></Route>
           <Route path="/SignUp" element={<SignUp />}></Route>
           <Route path="/CreateGymPopup" element={<CreateGymPopup />}></Route>
+          <Route path="/logout" element={<LogOut />} onLogout />
+          <Route path="/CheckOut" element={<CheckOut />} onLogout />
+          {/* <Route path="/MySnackbar" element={<MySnackbar />} onLogout /> */}
+
+
           {/* <Route path="/CreateGym" element={<CreateGym />}></Route> */}
         </Routes>
       </Router>

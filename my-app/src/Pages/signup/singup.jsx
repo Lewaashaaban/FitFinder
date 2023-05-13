@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {useCookies} from 'react-cookie';
 
 const SignUp = () => {
   const [fullName, setFullName] = useState("");
@@ -11,33 +12,38 @@ const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [Confirmpassword, setConfirmPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [invalid, setInvalid] = useState(false);
+  const [cookies, setCookies] = useCookies(["access_token"]);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/user/signup",
+        "http://localhost:8080/api/user/signup",
         {
           userName: userName,
-          fullName: userName,
-          email:email,
-          phoneNumber:phoneNumber,
+          fullName: fullName,
+          email: email,
+          phoneNumber: phoneNumber,
           password: password,
-          passwordConfirm: Confirmpassword,
+          passwordConfirm: passwordConfirm,
         }
       );
       if (response.status === 201) {
-        window.localStorage.setItem("userID", response.data.userID);
+        // window.localStorage.setItem("userID", response.data.userID);
         navigate("/login");
+      }
+      if (response.status === 404) {
+        alert("password and password confirm do not match ");
       }
     } catch (error) {
       console.log(error);
       setInvalid(true);
       setPassword("");
-      setConfirmPassword("");
+      setPasswordConfirm("");
     }
   };
 
@@ -56,7 +62,7 @@ const SignUp = () => {
                 <label htmlFor="fullname">FullName</label>
                 <input
                   type="text"
-                  className="email"
+                  className="fullname"
                   value={fullName}
                   placeholder="Enter your Full name"
                   onChange={(e) => setFullName(e.target.value)}
@@ -108,10 +114,10 @@ const SignUp = () => {
                 <label htmlFor="Confirmpassword">Confirm Password</label>
                 <input
                   type="password"
-                  value={Confirmpassword}
+                  value={passwordConfirm}
                   className="Confirmpawsword"
                   placeholder="Confirm your password"
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
                 />
               </div>
               {invalid && (
