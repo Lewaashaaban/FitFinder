@@ -1,37 +1,33 @@
 // Images imported From Images File
-import HeaderImg from "../../Images/girl-ties-hair-resized.jpg";
-import ChampsFitness from "../../Images/ChampsFitnessDevelopmentCenter.jpg";
-import GoldGym from "../../Images/Goldgym.jpg";
-import goodLife from "../../Images/goodLifeFitness.jpg";
-import Magnumgym from "../../Images/Magnumgym.jpg";
-import goldenlili from "../../Images/goldenlili.jpg";
-import VolumizeFitness from "../../Images/VolumizeFitnessClub.jpg";
 import img from "../../Images/girl-ties-hair-resized.jpg";
-
 import { NavBar } from "../../Components"; //import navbar
 import "./GetGymsByRegion.css"; //to link the css
 import { GymCards } from "../../Components";
+import { GymCardsByRegion } from "../../Components";
 
-// import GymCards from '../../Components/gymCards/gymCards';
-import CreateGymPopup from "../GymForm/createGymPopup";
-// material icon
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-// import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
-// import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+
 import { NavLink } from "react-router-dom";
 import React, { useRef, useState } from "react";
 
 const GetGyms = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState("All Gyms");
+  // const RegionToPass = selectedRegion;
+  // console.log("region to pass", RegionToPass);
+  // console.log("selected region", selectedRegion);
 
   const handleSearch = () => {
-    console.log("Selected value: " + selectedValue);
+    // handleSelectChange();
+    // renderSelectedPage();  
     handleScrollClick();
+   
+    // console.log("region to pass", RegionToPass);
+    // console.log("selected region", selectedRegion);
   };
 
   const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
+    setSelectedRegion(event.target.value);
   };
 
   const scrollToRef = useRef(null);
@@ -43,6 +39,25 @@ const GetGyms = () => {
       window.pageYOffset +
       yOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  const renderSelectedPage = () => {
+    switch (selectedRegion) {
+      case "All Gyms":
+        return <GymCards />;
+      case "Beirut":
+        return <GymCardsByRegion value="Beirut" />;
+      case "Mount Lebanon":
+        return <GymCardsByRegion value="Mount Lebanon" />;
+      case "North Lebanon":
+        return <GymCardsByRegion value="North Lebanon" />;
+      case "Baalbek-Hermel":
+        return <GymCardsByRegion value="Baalbek-Hermel" />;
+      case "the Beqaa":
+        return <GymCardsByRegion value="the Beqaa" />;
+      default:
+        return <GymCards />;
+    }
   };
 
   return (
@@ -62,19 +77,18 @@ const GetGyms = () => {
           <div>
             <select
               name="regions"
-              value={selectedValue}
+              value={selectedRegion}
               onChange={handleSelectChange}
             >
+              <option value="All gyms">All Gyms</option>
               <option value="Beirut ">Beirut </option>
               <option value="Mount Lebanon">Mount Lebanon</option>
               <option value="North Lebanon">North Lebanon</option>
-              <option value="Baalbek-Herme">Baalbek-Herme</option>
+              <option value="Baalbek-Hermel">Baalbek-Hermel</option>
               <option value="the Beqaa">the Beqaa</option>
             </select>
 
-            <button onClick={handleSearch}>
-              <SearchOutlinedIcon />
-            </button>
+            <button onClick={handleSearch}>{<SearchOutlinedIcon />}</button>
           </div>
         </div>
       </div>
@@ -90,15 +104,19 @@ const GetGyms = () => {
         {/* <div className="row">
           <div className="column">
             <div className="box">
-              <img src={VolumizeFitness} alt="" className="gym1-box-1" />
+              <img src={props.image} alt="!!!" className="gym1-box-1" />
               <div className="textOverlay">
                 <p>
-                  Volumize Fitness club
+                  {props.gymName}
                   <br />
-                  address: Bchamoun
+                  address: {props.region}
                   <br />
-                  Rating: 3.9 stars
+                  Phone number: {props.phoneNumber}
                 </p>
+                {isCurrentUserGym && (
+              <DeleteIcon
+                id="delete-btn"
+                onClick={() => handleDelete(props.id)}
               </div>
             </div>
           </div>
@@ -181,8 +199,7 @@ const GetGyms = () => {
         {/* </div>  */}
 
         <div className="Properties">
-          <GymCards setErrorMessage={setErrorMessage} />
-        </div>
+          {renderSelectedPage()}</div>
 
         <p>{errorMessage}</p>
       </div>

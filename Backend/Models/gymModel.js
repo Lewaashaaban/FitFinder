@@ -32,8 +32,9 @@ const GymSchema = new mongoose.Schema(
     ],
     gymClasses: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "Class",
+        // type: Schema.Types.ObjectId,
+        // ref: "Class",
+        type:String
       },
     ],
     schedules: [

@@ -6,13 +6,13 @@ require("dotenv").config();
 exports.getAllGyms = async (req, res) => {
   try {
     const gyms = await gym.find();
-    if (gyms == 0) {
-      return res.status(404).json({ message: "no gyms found" });
-    }
-    return res.status(200).json({ success: true, data: gyms });
+    // if (gyms == 0) {
+    //   return res.status(404).json({ message: "no gyms found" });
+    // }
+    res.status(200).json(gyms);
   } catch (err) {
     console.log(err);
-    res.status(500).json({ message: "Server error", err });
+    return res.status(500).json({ message: "Server error", err });
   }
 };
 
@@ -28,24 +28,24 @@ exports.createGym = async (req, res) => {
         .json({ message: "gym with this name already exists" });
     }
     const user = await User.findOne({ _id: creator });
-    if (!user) {
-      return res.status(404).json({ message: "gym owner is not found" });
-    }
+    // if (!user) {
+    //   return res.status(404).json({ message: "gym owner is not found" });
+    // }
 
     const newGym = await gym.create({
       gymName: req.body.gymName,
       region: req.body.region,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
-      // gymClasses: req.body.gymClasses,
+      gymClasses: req.body.gymClasses,
       image: req.body.image,
-      // description: req.body.description,
+      description: req.body.description,
       creator: creator,
     });
 
     return res
-      .status(201)
-      .json({ message: "Gym Created successfully", data: newGym });
+      .status(200)
+      .json( newGym );
   } catch (err) {
     console.log(err);
   }
@@ -112,9 +112,9 @@ exports.countGymsByRegion = async (req, res) => {
   try {
     const gyms = await gym.find({ region: req.params.region });
 
-    const count = gyms.length;
+    // const count = gyms.length;
 
-    res.status(201).json({ count, gyms: gyms });
+    res.status(200).json(gyms);
   } catch (err) {
     console.log(err);
   }

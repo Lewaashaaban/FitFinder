@@ -4,6 +4,7 @@ import "./createGymPopup.css";
 import { NavLink } from "react-router-dom";
 import { Calendar } from "../../Components";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const CreateGymPopup = () => {
   const [gymName, setGymName] = useState("");
@@ -14,6 +15,7 @@ const CreateGymPopup = () => {
   const [gymAddress, setGymAddress] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [type, setType] = useState("type");
+  const [gymDescription, setGymDescription] = useState("");
 
   const handleUrlChange = (event) => {
     setUrl(event.target.value);
@@ -25,13 +27,7 @@ const CreateGymPopup = () => {
     return regex.test(url);
   };
   const getIsFormValid = () => {
-    return (
-      gymName &&
-      gymAddress &&
-      isValid &&
-      gymRegion &&
-      type !== "type"
-    );
+    return gymName && gymAddress && isValid && gymRegion && type !== "type";
   };
 
   const clearForm = () => {
@@ -45,18 +41,23 @@ const CreateGymPopup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const accessToken = Cookies.get("access_token");
-    // const userID = localStorage.getItem('userID');
+    const accessToken = Cookies.get("access_token");
+    const userID = localStorage.getItem("userID");
+    console.log(userID);
+    console.log(accessToken);
 
-    // if (!accessToken) {
-    //   throw new Error("Authentication token not found!");
-    // }
-
-   
+    if (!accessToken) {
+      throw new Error("Authentication token not found!");
+    }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/gym/CreateGyms",
+        "http://localhost:8080/api/gym/CreateGyms",
         {
           gymName: gymName,
           region: gymRegion,
@@ -64,29 +65,32 @@ const CreateGymPopup = () => {
           phoneNumber: phoneNumber,
           gymClasses: classes,
           image: url,
-          description: "Demo Description",
+          description: gymDescription,
         },
-        
+        config
       );
       if (response.status === 200) {
-        alert("Property added successfully");
+        console.log(response.data);
+        alert("Gym created successfully");
       }
     } catch (error) {
       console.log(error);
       alert("Error adding property");
     }
-    clearForm();
+    // clearForm();
   };
 
   return (
     <>
-      <div className="CreateGympage">
+      <form className="CreateGympage" onSubmit={handleSubmit}>
         <div className="left">
           {/* <button className="show-login">Login</button> */}
 
           <div className="popupCreateGym">
-            <div className="close-btn">
-              <NavLink to="/GetGyms">&times;</NavLink>
+            <div className="closebtnn">
+              <div className="close-btn">
+                <NavLink to="/GetGyms">&times;</NavLink>
+              </div>
             </div>
 
             <div className="form">
@@ -162,16 +166,32 @@ const CreateGymPopup = () => {
                 <input
                   type="text"
                   className="classes"
-                  placeholder="https://example"
+                  placeholder="https://example.jpg"
                   required
                   value={url}
                   onChange={handleUrlChange}
                 />
               </div>
               <div className="form-element">
-                <NavLink to="/createGym">
-                  <button disabled={!getIsFormValid()}>Create Gym</button>
-                </NavLink>
+                <label>
+                  Description <sup id="optional">Optional</sup>
+                </label>
+                <br />
+                <textarea
+                  id="mytextarea"
+                  style={{ height: "40px" }}
+                  cols="10"
+                  rows="2"
+                  value={gymDescription}
+                  onChange={(e) => {
+                    setGymDescription(e.target.value);
+                  }}
+                ></textarea>
+              </div>
+              <div className="form-element">
+                {/* <NavLink to="/GetGyms"> */}
+                <button type="submit">Create Gym</button>
+                {/* </NavLink> */}
               </div>
             </div>
           </div>
@@ -180,10 +200,9 @@ const CreateGymPopup = () => {
           <h3>Set the schedule of your classes </h3>
           <Calendar />
         </div>
-      </div>
+      </form>
     </>
   );
 };
 
 export default CreateGymPopup;
-

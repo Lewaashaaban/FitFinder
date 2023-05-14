@@ -49,14 +49,14 @@ const Calendar = () => {
       <Box display="flex" justifyContent="space-between">
 
         {/* CALENDAR SIDEBAR */}
-          {/* <Box flex="1 1 20%" p="15px" borderRadius="4px"> 
+          <Box flex="1 1 20%" p="15px" borderRadius="4px"> 
           <Typography variant="h5">Events</Typography>
           <List>
             {currentEvents.map((event) => (
               <ListItem
                 key={event.id}
                 sx={{
-                  margin: "10px 0",
+                  margin: "2px 0",
                   borderRadius: "2px",
                 }}
               >
@@ -75,12 +75,12 @@ const Calendar = () => {
               </ListItem>
             ))}
           </List>
-        </Box>  */}
+        </Box> 
 
         {/* CALENDAR */}
         <Box flex="1 1 100%" ml="15px">
           <FullCalendar
-            height="60vh"
+            height="72vh"
             plugins={[
               dayGridPlugin,
               timeGridPlugin,
@@ -100,18 +100,18 @@ const Calendar = () => {
             select={handleDateClick}
             eventClick={handleEventClick}
             eventsSet={(events) => setCurrentEvents(events)}
-            initialEvents={[
-              {
-                id: "12315",
-                title: "All-day event",
-                date: "2023-4-19",
-              },
-              {
-                id: "5123",
-                title: "Timed event",
-                date: "2022-09-28",
-              },
-            ]}
+            // initialEvents={[
+            //   {
+            //     id: "12315",
+            //     title: "All-day event",
+            //     date: "2023-4-19",
+            //   },
+            //   {
+            //     id: "5123",
+            //     title: "Timed event",
+            //     date: "2022-09-28",
+            //   },
+            // ]}
           />
         </Box>
       </Box>

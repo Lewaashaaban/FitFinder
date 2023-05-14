@@ -6,4 +6,4 @@ export { default as GymCards } from "./gymCards/gymCards";
 export { default as LogOut } from "../Pages/LogOut/LogOut";
 export { default as CheckOut } from "../Pages/LogOut/CheckOut/checkOut";
 export { default as MySnackbar } from "./snackBar/snackBar";
-
+export {default as GymCardsByRegion} from './GymCardsByRegion/GymCardsByRegion';

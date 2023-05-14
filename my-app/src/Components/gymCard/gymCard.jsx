@@ -27,8 +27,8 @@ const GymCard = (props) => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/gym/deleteGym/${props.id}`
-        ,config
+        `http://localhost:8080/api/gym/deleteGym/${props.id}`,
+        config
       );
       if (response.status === 200) {
         alert("Gym deleted successfully");
@@ -47,29 +47,55 @@ const GymCard = (props) => {
   }, []);
 
   return (
-    <div className="parent">
-      <Link
-        to={`/`}
-        key={props.id}
-        className="PropertyCard"
-      >
-        <img src={props.image} alt="!!!!" />
-        <div className="card-content">
-          <div className="title-value">
-            <span>{props.gymName}</span>
-            <span className="value">${props.phoneNumber}</span>
-          </div>
-          <div className="foot">
-            <span>{props.region}</span>
+    // <div className="parent">
+    //   <Link
+    //     to={`/GetGyms`}
+    //     key={props.id}
+    //     className="PropertyCard"
+    //   >
+    //     <img src={props.image} alt="!!!!" />
+    //     <div className="card-content">
+    //       <div className="title-value">
+    //         <span>{props.gymName}</span>
+    //         <span className="value">{props.phoneNumber}</span>
+    //       </div>
+    //       <div className="foot">
+    //         <span>{props.region}</span>
+    //         {isCurrentUserGym && (
+    //           <DeleteIcon
+    //             id="delete-btn"
+    //             onClick={() => handleDelete(props.id)}
+    //           />
+    //         )}
+    //       </div>
+    //     </div>
+    //   </Link>
+    // </div>
+
+    <div className="column">
+      <div className="box">
+        <img src={props.image} alt="!!!" className="gym1-box-1" />
+        <div className="textOverlay">
+          <p>
+            {props.gymName}
+            <br />
+            Address: {props.region}
+            <br />
+            
+            Phone number: {props.phoneNumber}
+            <br />
+          </p>
+          <div className="delete-btnn">
+            
             {isCurrentUserGym && (
-              <DeleteIcon
-                id="delete-btn"
-                onClick={() => handleDelete(props.id)}
-              />
-            )}
-          </div>
+            <DeleteIcon
+              id="delete-btn"
+              onClick={() => handleDelete(props.id)}
+            />
+          
+          )}</div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

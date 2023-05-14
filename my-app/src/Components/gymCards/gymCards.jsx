@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 
 const GymCards = (props) => {
   const [gyms, setGyms] = useState([]);
+  // const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,7 @@ const GymCards = (props) => {
         );
 
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log("sorna bel gym cards");
           setGyms(response.data);
         }
       } catch (error) {
@@ -59,8 +60,6 @@ const GymCards = (props) => {
   // );
   return (
     <div className="GymCards">
-      <div>test1</div>
-      
       {Array.isArray(gyms) &&
         gyms.map((gym, index) => (
           <div className="parentContainer" key={index}>
@@ -68,11 +67,12 @@ const GymCards = (props) => {
               gymName={gym.gymName}
               image={gym.image}
               region={gym.region}
+              phoneNumber={gym.phoneNumber}
+              // creator={gym.creator}
               // address={gym.address}
               id={gym._id}
               isCurrentUserGym={true}
             />
-             <p>test2</p>
           </div>
         ))}
         
