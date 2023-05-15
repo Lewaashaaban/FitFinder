@@ -121,15 +121,14 @@ exports.countGymsByRegion = async (req, res) => {
 };
 
 exports.getGymDetails = async (req, res) => {
-  const { id } = req.params;
-
+ 
   try {
-    const GymExists = await gym.findOne({ _id: id }).populate("creator");
-
+    const GymExists = await gym.findOne({ _id: req.params.id });
+    
     if (GymExists) {
-      res.status(200).json(GymExists);
+      return res.status(200).json(GymExists);
     } else {
-      res.status(404).json({ message: "Property not found" });
+      return res.status(404).json({ message: "Property not found" });
     }
   } catch (error) {
     console.log(error);

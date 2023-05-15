@@ -5,10 +5,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+// import { GetGymDetails } from "../../Pages";
+import { NavLink } from "react-router-dom";
 
 const GymCard = (props) => {
   const [isCurrentUserGym, setIsCurrentUserGym] = useState(false);
-
+  // console.log(props.id);
   const handleDelete = async (e) => {
     e.preventDefault();
 
@@ -73,29 +75,29 @@ const GymCard = (props) => {
     // </div>
 
     <div className="column">
-      <div className="box">
-        <img src={props.image} alt="!!!" className="gym1-box-1" />
-        <div className="textOverlay">
-          <p>
-            {props.gymName}
-            <br />
-            Address: {props.region}
-            <br />
-            
-            Phone number: {props.phoneNumber}
-            <br />
-          </p>
-          <div className="delete-btnn">
-            
-            {isCurrentUserGym && (
-            <DeleteIcon
-              id="delete-btn"
-              onClick={() => handleDelete(props.id)}
-            />
-          
-          )}</div>
+      <NavLink to={`/getGymDetails/${props.id}`} className="nav-link">
+        <div className="box">
+          <img src={props.image} alt="!!!" className="gym1-box-1" />
+          <div className="textOverlay">
+            <p>
+              {props.gymName}
+              <br />
+              Address: {props.region}
+              <br />
+              Phone number: {props.phoneNumber}
+              <br />
+            </p>
+            <div className="delete-btnn">
+              {isCurrentUserGym && (
+                <DeleteIcon
+                  id="delete-btn"
+                  onClick={() => handleDelete(props.id)}
+                />
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      </NavLink>
     </div>
   );
 };

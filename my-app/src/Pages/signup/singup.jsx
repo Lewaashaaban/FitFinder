@@ -34,6 +34,8 @@ const SignUp = () => {
       );
       if (response.status === 201) {
         // window.localStorage.setItem("userID", response.data.userID);
+        alert("You signed up succesfully, please login");
+
         navigate("/login");
       }
       if (response.status === 404) {

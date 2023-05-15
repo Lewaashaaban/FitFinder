@@ -8,6 +8,7 @@ import {
   SignUp,
   CreateGymPopup,
   CreateGym,
+  GetGymDetails
 } from "./Pages";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/CreateGymPopup" element={<CreateGymPopup />}></Route>
           <Route path="/logout" element={<LogOut />} onLogout />
           <Route path="/CheckOut" element={<CheckOut />} onLogout />
+          <Route path={`/getGymDetails/:id`} element={<GetGymDetails/>}/>
           {/* <Route path="/MySnackbar" element={<MySnackbar />} onLogout /> */}
 
 
