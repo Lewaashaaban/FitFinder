@@ -109,7 +109,7 @@
 }
 .container-gyms .box {
   box-shadow: #0b2d47;
-  height: 480px;
+  height: 510px;
   width: 500px;
   border-radius: 1px solid #000;
   background-color: #000;
@@ -128,10 +128,11 @@
   transform: scale(1.086);
   background-color: black;
 }
-.container-gyms .delete-btnn{
+/* .container-gyms .delete-btnn{
   display: flex;
   justify-content: end ;
-}
+  margin-right: 10px;
+} */
 /* .container-gyms .box:hover img {
   transform: scale(1.1);
   filter: brightness(70%);

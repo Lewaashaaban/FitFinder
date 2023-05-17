@@ -1,21 +1,31 @@
 import React from "react";
-import { useState } from "react";
-import "./createGymPopup.css";
+import { useState, useEffect } from "react";
+import "./updateGym.css";
 import { NavLink } from "react-router-dom";
-import { Calendar } from "../../Components";
+import { Calendar } from "../../../Components";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const CreateGymPopup = () => {
-  const [gymName, setGymName] = useState("");
-  const [gymRegion, setGymRegion] = useState("");
-  const [classes, setCLasses] = useState([]);
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [url, setUrl] = useState("");
-  const [gymAddress, setGymAddress] = useState("");
+const UpdateGym = () => {
+  const currentUrl = window.location.href;
+  const parts = currentUrl.split("/");
+  const lastPart = parts[parts.length - 1];
+
+  const [gym, setGym] = useState({});
+  // console.log(gym);
+  // console.log(gym.gymName,"gym.gymname");
+
+  const [gymName, setGymName] = useState();
+  const [gymRegion, setGymRegion] = useState();
+  const [classes, setCLasses] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [url, setUrl] = useState();
+  const [gymAddress, setGymAddress] = useState();
+  const [gymDescription, setGymDescription] = useState();
   const [isValid, setIsValid] = useState(false);
   const [type, setType] = useState("type");
-  const [gymDescription, setGymDescription] = useState("");
+
+  const [isCurrentUserGym, setIsCurrentUserGym] = useState(false);
 
   const handleUrlChange = (event) => {
     setUrl(event.target.value);
@@ -26,9 +36,6 @@ const CreateGymPopup = () => {
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
   };
-  const getIsFormValid = () => {
-    return gymName && gymAddress && isValid && gymRegion && type !== "type";
-  };
 
   const clearForm = () => {
     setGymName("");
@@ -38,17 +45,57 @@ const CreateGymPopup = () => {
     setType("type");
   };
 
-  const handleSubmit = async (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = Cookies.get("access_token");
+
+        if (!accessToken) {
+          throw new Error("Authentication token not found");
+        }
+
+        const config = {
+          headers: {
+            Authorization: `Bearer: ${accessToken}`,
+          },
+        };
+
+        const response = await axios.get(
+          `http://localhost:8080/api/gym/getGymDetails/${lastPart}`,
+          config
+        );
+
+        if (response.status === 200) {
+          console.log(response.data);
+          setGym(response.data);
+          console.log(response.data);
+          setGym(response.data);
+          setGymName(response.data.gymName);
+          setGymRegion(response.data.region);
+          setCLasses(response.data.gymClasses);
+          setPhoneNumber(response.data.phoneNumber);
+          setUrl(response.data.image);
+          setGymAddress(response.data.address);
+          setGymDescription(response.data.description);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [lastPart]);
+
+  // function to update a selected gym
+  const handleEdit = async (e) => {
     e.preventDefault();
 
     const accessToken = Cookies.get("access_token");
     const userID = localStorage.getItem("userID");
-    console.log(userID);
-    console.log(accessToken);
 
     if (!accessToken) {
       throw new Error("Authentication token not found!");
     }
+
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -56,8 +103,8 @@ const CreateGymPopup = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/gym/CreateGyms",
+      const response = await axios.patch(
+        `http://localhost:8080/api/gym/updateGym/${lastPart}`,
         {
           gymName: gymName,
           region: gymRegion,
@@ -69,20 +116,26 @@ const CreateGymPopup = () => {
         },
         config
       );
+      console.log(gym.creator);
+
+      if (userID == gym.creator) {
+        setIsCurrentUserGym(true);
+      }
+
       if (response.status === 200) {
         console.log(response.data);
-        alert("Gym created successfully");
+        setGym(response.data);
+        alert("Gym updated successfully");
       }
     } catch (error) {
       console.log(error);
-      alert("Error adding property");
+      alert("Error updating Gym");
     }
-    // clearForm();
   };
 
   return (
     <>
-      <form className="CreateGympage" onSubmit={handleSubmit}>
+      <form className="UpdateGympage" onSubmit={handleEdit}>
         <div className="left">
           {/* <button className="show-login">Login</button> */}
 
@@ -94,13 +147,12 @@ const CreateGymPopup = () => {
             </div>
 
             <div className="form">
-              <h2>Add Your Gym</h2>
+              <h2>Update Your Gym</h2>
               <div className="form-element">
                 <label htmlFor="GymName">GymName</label>
                 <input
                   type="text"
                   className="GymName"
-                  placeholder="Enter your GymName"
                   required
                   value={gymName}
                   onChange={(e) => {
@@ -126,7 +178,6 @@ const CreateGymPopup = () => {
                 <input
                   type="text"
                   className="Address"
-                  placeholder="beirut, hamra street,rue12"
                   required
                   value={gymAddress}
                   onChange={(e) => {
@@ -139,7 +190,6 @@ const CreateGymPopup = () => {
                 <input
                   type="text"
                   className="phoneNumber"
-                  placeholder="+961 ********"
                   value={phoneNumber}
                   required
                   onChange={(e) => {
@@ -152,7 +202,6 @@ const CreateGymPopup = () => {
                 <input
                   type="text"
                   className="classes"
-                  placeholder="class1,class2,class3"
                   required
                   value={classes}
                   onChange={(e) => {
@@ -161,12 +210,11 @@ const CreateGymPopup = () => {
                 />
               </div>
               <div className="form-element">
-                <label>Upload gym image(s)</label>
+                <label>Update gym image(s)</label>
                 <br />
                 <input
                   type="text"
                   className="classes"
-                  placeholder="https://example.jpg"
                   required
                   value={url}
                   onChange={handleUrlChange}
@@ -179,9 +227,9 @@ const CreateGymPopup = () => {
                 <br />
                 <textarea
                   id="mytextarea"
-                  style={{ height: "40px" }}
+                  style={{ height: "60px" }}
                   cols="10"
-                  rows="2"
+                  rows="4"
                   value={gymDescription}
                   onChange={(e) => {
                     setGymDescription(e.target.value);
@@ -190,19 +238,19 @@ const CreateGymPopup = () => {
               </div>
               <div className="form-element">
                 {/* <NavLink to="/GetGyms"> */}
-                <button type="submit">Create Gym</button>
+                <button type="submit">Update Gym</button>
                 {/* </NavLink> */}
               </div>
             </div>
           </div>
         </div>
-        <div className="right">
+        {/* <div className="right">
           <h3>Set the schedule of your classes </h3>
           <Calendar />
-        </div>
+        </div> */}
       </form>
     </>
   );
 };
 
-export default CreateGymPopup;
+export default UpdateGym;

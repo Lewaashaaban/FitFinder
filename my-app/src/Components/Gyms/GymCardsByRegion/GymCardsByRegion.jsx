@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./gymCards.css";
+import "./GymCardsByRegion.css";
 import axios from "axios";
 import GymCard from "../gymCard/gymCard";
 import Cookies from "js-cookie";
 
-const GymCards = (props) => {
+const GymCardsByRegion = (props) => {
   const [gyms, setGyms] = useState([]);
-  // const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +23,12 @@ const GymCards = (props) => {
           },
         };
         const response = await axios.get(
-          `http://localhost:8080/api/gym/getGyms`,
+          `http://localhost:8080/api/gym/getGymsByRegion/${props.value}`,
           config
         );
 
         if (response.status === 200) {
-          // console.log("sorna bel gym cards");
+          // console.log("sorna bel gymcardsby region");
           setGyms(response.data);
         }
       } catch (error) {
@@ -39,25 +38,6 @@ const GymCards = (props) => {
     fetchData();
   }, []);
 
-  // return (
-  //   <div className="GymCards">
-  //     <div>test1</div>
-  //     {gyms.map((gym, index) => (
-  //       <div className="parentContainer" key={index}>
-  //         console.log(gym);
-  //         <GymCard
-  //           gymName={gym.gymName}
-  //           image={gym.image}
-  //           region={gym.region}
-  //           // address={gym.address}
-  //           id={gym._id}
-  //           isCurrentUserGym={true}
-  //         />
-  //         <p>test2</p>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
   return (
     <div className="GymCards">
       {Array.isArray(gyms) &&
@@ -68,10 +48,10 @@ const GymCards = (props) => {
               image={gym.image}
               region={gym.region}
               phoneNumber={gym.phoneNumber}
-              // creator={gym.creator}
+              creator={gym.creator}
               // address={gym.address}
               id={gym._id}
-              isCurrentUserGym={true}
+              isCurrentUserGym={false}
             />
           </div>
         ))}
@@ -80,4 +60,4 @@ const GymCards = (props) => {
   );
 };
 
-export default GymCards;
+export default GymCardsByRegion;

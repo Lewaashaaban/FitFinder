@@ -1,9 +1,9 @@
 // Images imported From Images File
-import img from "../../Images/girl-ties-hair-resized.jpg";
-import { NavBar } from "../../Components"; //import navbar
+import img from "../../../Images/girl-ties-hair-resized.jpg";
+import { NavBar } from "../../../Components"; //import navbar
 import "./GetGymsByRegion.css"; //to link the css
-import { GymCards } from "../../Components";
-import { GymCardsByRegion } from "../../Components";
+import { GymCards } from "../../../Components";
+import { GymCardsByRegion } from "../../../Components";
 
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 

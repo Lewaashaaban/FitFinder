@@ -12,7 +12,7 @@ const GetGymDetails = () => {
   const currentUrl = window.location.href;
   const parts = currentUrl.split("/");
   const lastPart = parts[parts.length - 1];
-  console.log(lastPart); // Output: the last part of the URL
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,10 +37,11 @@ const GetGymDetails = () => {
         if (response.status === 200) {
           console.log(response.data);
           setGym(response.data);
+          
         }
       } catch (error) {
         console.log(error);
-        console.log("catch");
+        
       }
     };
     fetchData();
@@ -64,6 +65,7 @@ const GetGymDetails = () => {
               <p>Phone Number: {gym.phoneNumber}</p>
               {/* <br /> */}
               <p>Classes : {gym.gymClasses}</p>
+              <p>CreatorI: {gym.creator}</p>
             </div>
           </div>
           <div className="description">{gym.description}</div>

@@ -59,12 +59,23 @@
     align-items: center;
   }*/
   
-  #delete-btn {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+  #delete-btn #edit-btn{
+    font-size: 10px;
+    height: 25px;
+    margin-right: 60px;
+    margin-bottom: 40px;
   }
   
   #delete-btn:hover {
     color: red;
   } 
+  #edit-btn:hover{
+    color: yellow;
+  }
+  #delete-btnn{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 100px;
+    margin-right: 30px;
+
+  }
