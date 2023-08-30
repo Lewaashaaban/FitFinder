@@ -244,10 +244,10 @@ const UpdateGym = () => {
             </div>
           </div>
         </div>
-        {/* <div className="right">
+        <div className="right">
           <h3>Set the schedule of your classes </h3>
           <Calendar />
-        </div> */}
+        </div>
       </form>
     </>
   );

@@ -46,7 +46,7 @@ const GetGyms = () => {
       case "All Gyms":
         return <GymCards />;
       case "Beirut":
-        return <GymCardsByRegion value="Beirut" />;
+        return <GymCardsByRegion value="beirut" />;
       case "Mount Lebanon":
         return <GymCardsByRegion value="Mount Lebanon" />;
       case "North Lebanon":

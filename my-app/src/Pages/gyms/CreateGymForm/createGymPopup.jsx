@@ -72,7 +72,7 @@ const CreateGymPopup = () => {
       );
       if (response.status === 200) {
         console.log(response.data);
-        alert("Gym Updated successfully");
+        alert("Gym Created successfully");
       }
     } catch (error) {
       console.log(error);

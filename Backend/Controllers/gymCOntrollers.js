@@ -96,6 +96,7 @@ exports.updateGym = async (req, res) => {
 exports.deleteGym = async (req, res) => {
   try {
     const Gym = await gym.findByIdAndDelete(req.params.id);
+    
 
     if (!Gym) {
       return res.status(400).json({ message: "recheck the gymID" });

@@ -15,19 +15,15 @@ const GymCard = (props) => {
   
   // function to delete a selected gym
   const handleDelete = async (e) => {
-    e.preventDefault();
+    
 const accessToken = Cookies.get("access_token");
   const userID = localStorage.getItem("userID");
-  
-  console.log(userID);
-  console.log(props.creator);
   if (userID == props.creator) {
     setIsCurrentUserGym(true);
   }
     if (!accessToken) {
       throw new Error("Authentication token not found!");
     }
-
     const config = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -36,10 +32,9 @@ const accessToken = Cookies.get("access_token");
 
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/gym//deleteGym/${props.id}`,
+        `http://localhost:8080/api/gym/deleteGym/${props.id}`,
         config
       );
-      console.log(props.creator);
 
       if (response.status === 200) {
         alert("Gym deleted successfully");
@@ -91,11 +86,13 @@ const accessToken = Cookies.get("access_token");
 
   return (
     <div className="column">
-      <NavLink to={`/getGymDetails/${props.id}`} className="nav-link">
+      
         <div className="box">
+          <NavLink to={`/getGymDetails/${props.id}`} className="nav-link">
           <img src={props.image} alt="!!!" className="gym1-box-1" />
-
+          </NavLink>
           <div className="textOverlay">
+            
             <p>
               {props.gymName}
               <br />
@@ -104,7 +101,7 @@ const accessToken = Cookies.get("access_token");
               Phone number: {props.phoneNumber}
               <br />
             </p>
-
+ {/* </NavLink> */}
             <div id="delete-btnn">
               {isCurrentUserGym && (
                 <>
@@ -116,15 +113,16 @@ const accessToken = Cookies.get("access_token");
                     <DeleteIcon
                       sx={{ fontSize: 25 }}
                       id="delete-btn"
-                      onClick={() => handleDelete(props.id)}
+                      onClick={() => {handleDelete(props.id)}}
                     />
                   </div>
                 </>
               )}
             </div>
           </div>
+         
         </div>
-      </NavLink>
+      
     </div>
   );
 };

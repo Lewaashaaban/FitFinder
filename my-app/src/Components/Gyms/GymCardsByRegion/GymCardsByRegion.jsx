@@ -28,8 +28,8 @@ const GymCardsByRegion = (props) => {
         );
 
         if (response.status === 200) {
-          // console.log("sorna bel gymcardsby region");
           setGyms(response.data);
+          console.log(props.value);
         }
       } catch (error) {
         console.log(error);
@@ -43,7 +43,7 @@ const GymCardsByRegion = (props) => {
       {Array.isArray(gyms) &&
         gyms.map((gym, index) => (
           <div className="parentContainer" key={index}>
-            <GymCard
+            <GymCard  
               gymName={gym.gymName}
               image={gym.image}
               region={gym.region}
