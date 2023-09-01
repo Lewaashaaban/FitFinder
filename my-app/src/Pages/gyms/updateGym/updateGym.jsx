@@ -160,18 +160,24 @@ const UpdateGym = () => {
                   }}
                 />
               </div>
+             
               <div className="form-element">
                 <label htmlFor="email">Region</label>
-                <input
-                  type="text"
-                  className="Region"
-                  placeholder="Beirut"
-                  required
+                <br></br>
+                <select
+                  name="Region"
                   value={gymRegion}
                   onChange={(e) => {
                     setGymRegion(e.target.value);
                   }}
-                />
+                >
+                  <option value="Beirut">Beirut</option>
+                  <option value="Mount Lebanon">Mount Lebanon</option>
+                  <option value="North Lebanon">North Lebanon</option>
+                  <option value="Baalbek-Hermel">Baalbek-Hermel</option>
+                  <option value="the Beqaa">the Beqaa</option>
+                </select>
+                {/* </div> */}
               </div>
               <div className="form-element">
                 <label htmlFor="address">Address</label>

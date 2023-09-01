@@ -7,3 +7,4 @@ export { default as SignUp } from "./signup/singup";
 export { default as CreateGymPopup } from "./gyms/CreateGymForm/createGymPopup";
 export { default as GetGymDetails } from "./gyms/gymCardDetails/gymCardDetails";
 export { default as UpdateGym } from "./gyms/updateGym/updateGym";
+export { default as PaymentPage } from "./payment/payment";

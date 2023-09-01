@@ -3,12 +3,10 @@ import "./gymCards.css";
 import axios from "axios";
 import GymCard from "../gymCard/gymCard";
 import Cookies from "js-cookie";
-// import { useState } from "react";
 
 const GymCards = (props) => {
   const [gyms, setGyms] = useState([]);
-  const [isCurrentUserGym,setIsCurrentUserGym] = useState(false);
-  // const [isClicked, setIsClicked] = useState(false);
+  const [isCurrentUserGym, setIsCurrentUserGym] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -47,25 +45,6 @@ const GymCards = (props) => {
     fetchData();
   }, []);
 
-  // return (
-  //   <div className="GymCards">
-  //     <div>test1</div>
-  //     {gyms.map((gym, index) => (
-  //       <div className="parentContainer" key={index}>
-  //         console.log(gym);
-  //         <GymCard
-  //           gymName={gym.gymName}
-  //           image={gym.image}
-  //           region={gym.region}
-  //           // address={gym.address}
-  //           id={gym._id}
-  //           isCurrentUserGym={true}
-  //         />
-  //         <p>test2</p>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
   return (
     <div className="GymCards">
       {Array.isArray(gyms) &&
@@ -83,7 +62,6 @@ const GymCards = (props) => {
             />
           </div>
         ))}
-        
     </div>
   );
 };

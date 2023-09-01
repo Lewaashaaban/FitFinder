@@ -12,7 +12,7 @@ const GymCardsByRegion = (props) => {
       try {
         const accessToken = Cookies.get("access_token");
         const userID = localStorage.getItem("userID");
-
+        console.log(userID);
         if (!accessToken) {
           throw new Error("Authentication token not found");
         }
@@ -36,14 +36,14 @@ const GymCardsByRegion = (props) => {
       }
     };
     fetchData();
-  }, []);
+  }, [props.value]);
 
   return (
     <div className="GymCards">
       {Array.isArray(gyms) &&
         gyms.map((gym, index) => (
           <div className="parentContainer" key={index}>
-            <GymCard  
+            <GymCard
               gymName={gym.gymName}
               image={gym.image}
               region={gym.region}

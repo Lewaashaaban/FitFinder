@@ -13,17 +13,14 @@ import React, { useRef, useState } from "react";
 const GetGyms = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("All Gyms");
-  // const RegionToPass = selectedRegion;
-  // console.log("region to pass", RegionToPass);
-  // console.log("selected region", selectedRegion);
+
 
   const handleSearch = () => {
-    // handleSelectChange();
-    // renderSelectedPage();  
+ 
     handleScrollClick();
-   
+
     // console.log("region to pass", RegionToPass);
-    // console.log("selected region", selectedRegion);
+    console.log("selected region", selectedRegion);
   };
 
   const handleSelectChange = (event) => {
@@ -43,10 +40,10 @@ const GetGyms = () => {
 
   const renderSelectedPage = () => {
     switch (selectedRegion) {
-      case "All Gyms":
-        return <GymCards />;
+      // case "All Gyms":
+      //   return <GymCards />;
       case "Beirut":
-        return <GymCardsByRegion value="beirut" />;
+        return <GymCardsByRegion value="Beirut" />;
       case "Mount Lebanon":
         return <GymCardsByRegion value="Mount Lebanon" />;
       case "North Lebanon":
@@ -80,8 +77,8 @@ const GetGyms = () => {
               value={selectedRegion}
               onChange={handleSelectChange}
             >
-              <option value="All gyms">All Gyms</option>
-              <option value="Beirut ">Beirut </option>
+              <option value="All Gyms">All Gyms</option>
+              <option value="Beirut ">Beirut</option>
               <option value="Mount Lebanon">Mount Lebanon</option>
               <option value="North Lebanon">North Lebanon</option>
               <option value="Baalbek-Hermel">Baalbek-Hermel</option>
@@ -101,105 +98,8 @@ const GetGyms = () => {
           </h1>
         </div>
 
-        {/* <div className="row">
-          <div className="column">
-            <div className="box">
-              <img src={props.image} alt="!!!" className="gym1-box-1" />
-              <div className="textOverlay">
-                <p>
-                  {props.gymName}
-                  <br />
-                  address: {props.region}
-                  <br />
-                  Phone number: {props.phoneNumber}
-                </p>
-                {isCurrentUserGym && (
-              <DeleteIcon
-                id="delete-btn"
-                onClick={() => handleDelete(props.id)}
-              </div>
-            </div>
-          </div>
 
-          <div className="column">
-            <div className="box">
-              <img src={ChampsFitness} alt="" className="gym1-box-2" />
-              <div className="textOverlay">
-                <p>
-                  Champs fiteness Development center
-                  <br />
-                  address: Emile lahoud highway, Facing alfa, hazmieh
-                  <br />
-                  Rating: 4.5 stars
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="column">
-            <div className="box">
-              <img src={goodLife} alt="" className="gym1-box-3" />
-              <div className="textOverlay">
-                <p>
-                  Goodlife Fitness
-                  <br />
-                  address: Aley- Ras Al Jabal
-                  <br />
-                  Rating: 4.5 stars
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="column">
-            <div className="box">
-              <img src={Magnumgym} alt="" className="gym1-box-4" />
-              <div className="textOverlay">
-                <p>
-                  Magnum Gym
-                  <br />
-                  address: Aley- Al saray
-                  <br />
-                  Rating: 3.9 stars
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="column">
-            <div className="box">
-              <img src={goldenlili} alt="" className="gym1-box-5" />
-              <div className="textOverlay">
-                <p>
-                  Golden Lili Resort & Spa
-                  <br />
-                  address: Antelyas
-                  <br />
-                  Rating: 3.2 stars
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="column">
-            <div className="box">
-              <img src={GoldGym} alt="" className="gym1-box-6" />
-              <div className="textOverlay">
-                <p>
-                  Gold Gym
-                  <br />
-                  address: Aley- alzohoor street
-                  <br />
-                  Rating: 4 stars
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
-        {/* </div>  */}
-
-        <div className="Properties">
-          {renderSelectedPage()}</div>
+        <div className="Properties">{renderSelectedPage()}</div>
 
         <p>{errorMessage}</p>
       </div>

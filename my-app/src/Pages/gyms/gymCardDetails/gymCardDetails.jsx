@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./gymCardDetails.css";
 import Cookies from "js-cookie";
-
+import { NavLink } from "react-router-dom";
 const GetGymDetails = () => {
   const [gym, setGym] = useState({});
   // const  GymID  = useParams();
@@ -12,7 +11,6 @@ const GetGymDetails = () => {
   const currentUrl = window.location.href;
   const parts = currentUrl.split("/");
   const lastPart = parts[parts.length - 1];
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,13 +33,11 @@ const GetGymDetails = () => {
         );
 
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setGym(response.data);
-          
         }
       } catch (error) {
         console.log(error);
-        
       }
     };
     fetchData();
@@ -70,13 +66,17 @@ const GetGymDetails = () => {
           </div>
           <div className="description">{gym.description}</div>
           <div className="ending">
-          <div className="button">
-            <p>
-              Subscribe To the gym through our Website to get 5 PT sessions for
-              FREE !!
-            </p><br />
-            <button className="buttonssss">Subscribe Now</button>
-          </div></div>
+            <div className="button">
+              <p>
+                Subscribe To the gym through our Website to get 5 PT sessions
+                for FREE !!
+              </p>
+              <br />
+              <NavLink to="/payment">
+                <button className="buttonssss">Subscribe Now</button>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -65,10 +65,7 @@ exports.updateGym = async (req, res) => {
       gymClasses,
       image,
     } = req.body;
-    // const Gym = await gym.findByIdAndUpdate(req.params.id, req.body, {
-    //   new: true,
-    // });
-    // const photoUrl = "demo";
+ 
 
     const selectedGym = await gym.findByIdAndUpdate(
       { _id: id },
@@ -78,7 +75,6 @@ exports.updateGym = async (req, res) => {
         gymClasses,
         address,
         region,
-        // gymTrainers,
         image,
       }
     );

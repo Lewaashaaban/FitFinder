@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { SideBar,LogOut,CheckOut ,MySnackbar} from "./Components";
+import { SideBar, LogOut, CheckOut, MySnackbar } from "./Components";
 import {
   Home,
   LogInPage,
@@ -9,7 +9,8 @@ import {
   CreateGymPopup,
   CreateGym,
   GetGymDetails,
-  UpdateGym
+  UpdateGym,
+  PaymentPage,
 } from "./Pages";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
@@ -26,10 +27,10 @@ const App = () => {
           <Route path="/CreateGymPopup" element={<CreateGymPopup />}></Route>
           <Route path="/logout" element={<LogOut />} onLogout />
           <Route path="/CheckOut" element={<CheckOut />} onLogout />
-          <Route path={`/getGymDetails/:id`} element={<GetGymDetails/>}/>
-          <Route path={`/UpdateGym/:id`} element={<UpdateGym/>}></Route>
+          <Route path={`/getGymDetails/:id`} element={<GetGymDetails />} />
+          <Route path={`/UpdateGym/:id`} element={<UpdateGym />}></Route>
+          <Route path={"/payment"} element={<PaymentPage />}></Route>
           {/* <Route path="/MySnackbar" element={<MySnackbar />} onLogout /> */}
-
 
           {/* <Route path="/CreateGym" element={<CreateGym />}></Route> */}
         </Routes>

@@ -12,11 +12,11 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   /* gap: 0px; */
-  
+
   height: 100vh;
   box-sizing: border-box;
 }
- .left {
+.left {
   display: flex;
   flex-direction: column;
   margin-left: 140px;
@@ -24,19 +24,18 @@
   left: 10%;
   top: 5%; */
 }
-.right{
+.right {
   /* position: absolute;
   left: 50%;
   top: 5%; */
   height: 770px;
   width: 660px;
-  
+
   background: #fff;
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-
-} 
-.right h3{
+}
+.right h3 {
   margin-left: 130px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -96,6 +95,12 @@
   border-radius: 5px;
 }
 
+select {
+  /* padding: 20px; */
+  width: 415px;
+  padding-top: 5px;
+  padding-bottom: 7px;
+}
 .popupCreateGym .form .form-element button {
   width: 90%;
   height: 40px;
@@ -115,7 +120,7 @@
   text-decoration: none;
   font-weight: 600;
 }
-#mytextarea{
+#mytextarea {
   width: 415px;
 }
 .popupCreateGym .close-btn {
@@ -123,10 +128,10 @@
   top: 10px;
   right: 10px;*/
   width: 20px;
-  height: 20px; 
-  display:flex ;
+  height: 20px;
+  display: flex;
   right: 0;
-  justify-content:center;
+  justify-content: center;
   align-self: flex-end;
   background: #888;
   color: #eee;
@@ -135,7 +140,7 @@
   border-radius: 15px;
   cursor: pointer;
 }
-.popupCreateGym .closebtnn{
+.popupCreateGym .closebtnn {
   display: flex;
   justify-content: end;
 }

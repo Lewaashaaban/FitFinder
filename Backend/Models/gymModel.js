@@ -34,7 +34,7 @@ const GymSchema = new mongoose.Schema(
       {
         // type: Schema.Types.ObjectId,
         // ref: "Class",
-        type:String
+        type: String,
       },
     ],
     schedules: [
@@ -46,12 +46,10 @@ const GymSchema = new mongoose.Schema(
     phoneNumber: {
       type: String,
     },
-    // website: {
-    //   type: String,
-    // },
+
     image: {
       type: String,
-      required:true,
+      required: true,
     },
     description: {
       type: String,
