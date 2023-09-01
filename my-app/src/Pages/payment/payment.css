@@ -18,25 +18,24 @@
   padding: 20px;
 }
 
-img {
+.payment-page img {
   width: 100px;
   height: 60px;
   margin-bottom: 10px;
 }
 
-label {
+.payment-page label {
   font-weight: bold;
   margin-bottom: 8px;
 }
 
-input {
+.payment-page input {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
 .pay-button {
   background-color: #007bff;
   color: #fff;
